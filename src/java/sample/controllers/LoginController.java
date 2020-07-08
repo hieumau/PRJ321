@@ -5,22 +5,26 @@
  */
 package sample.controllers;
 
+import sample.daos.UserDAO;
+import sample.dtos.UserDTO;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author saost
  */
-public class MainController extends HttpServlet {
-    private static final String ERROR = "invalid.jsd";
-    private static final String LOGIN = "LoginController";
-    private static final String LOGOUT = "LogoutController";
-    private static final String MANAGE_ACCOUNT = "ManageAccountController";
+public class LoginController extends HttpServlet {
+    private static final String ERROR = "test_false.html";
+    private static final String ADMIN = "test_success.html";
+    private static final String USER = "test_success.html";
+    private static final String SUCCESS = "test_success.html";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,18 +39,20 @@ public class MainController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String action = request.getParameter("btnAction");
-            if (action.equals("Login")){
-                url = LOGIN;
-            } else if (action.equals("Logout")){
-                url = LOGOUT;
-            } else if (action.equals("ManageAccount")){
-                url = MANAGE_ACCOUNT;
+            String userID = request.getParameter("userID");
+            String password = request.getParameter("password");
+            UserDAO dao = new UserDAO();
+            UserDTO check = dao.checkLogin(userID, password);
+            if (check != null){
+                url = SUCCESS;
+                HttpSession session = request.getSession();
+                session.setAttribute("AUTH_USER", check);
             }
-        } catch (Exception e){
-            log("ERROR AT MAINCONTROLLER" + e.toString());
+
+        } catch (Exception e) {
+            log("Error at LoginServlet " + e.toString());
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            response.sendRedirect(url);
         }
     }
 
