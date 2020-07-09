@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Account manager</title>
+        <script src="main.js"></script>
     </head>
     <body>
         <h1>Welcome:
@@ -42,34 +43,53 @@
                         int count = 1;
                         for (UserDTO dto : userList) {
                     %>
-                            <tr>
-                                <td>
-                                    <%= count++%>
-                                </td>
-                                <td>
-                                    <%= dto.getId()%>
-                                </td>
-                                <td>
-                                    <%= dto.getFullName()%>
-                                </td>
-                                <td>
-                                    <%= dto.getPassword()%>
-                                </td>
-                                <td>
-                                    <%= dto.getGender()%>
-                                </td>
-                                <td>
-                                    <%= dto.getPhone()%>
-                                </td>
-                                <td>
-                                    <%= dto.getAddress()%>
-                                </td>
-                            </tr>
+                            <form action="MainController" id="form<%=count%>">
+                                <tr>
+                                    <td>
+                                        <%= count++%>
+                                    </td>
+                                    <td>
+                                        <%= dto.getId()%>
+                                    </td>
+                                    <input type="hidden" name="id" value=<%= dto.getId()%>>
+                                    <input type="hidden" name="roleID" value=<%= dto.getRoleID()%>>
+
+                                    <td>
+                                        <input type="text" name="fullName" value='<%= dto.getFullName()%>'>
+                                    </td>
+                                    <td>
+                                        <input type="password" name="password" id="password<%=count - 1%>" value='<%= dto.getPassword()%>'>
+                                        <input type="checkbox" onclick="hideShowPassword(<%=count - 1%>)">Show Password
+                                    </td>
+                                    <td>
+                                        <select name="gender" id="gender<%=count - 1%>">
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="LGBT">LGBT</option>
+                                        </select>
+                                        <script>
+                                            setSelectGender(<%=count - 1%>, '<%=dto.getGender()%>');
+                                        </script>
+
+                                    </td>
+                                    <td>
+                                        <input type="text" name="phone" value='<%= dto.getPhone()%>'>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="address" value='<%= dto.getAddress()%>'>
+                                    </td>
+                                    <td>
+                                        <input type="submit" name="btnAction" value="Update account info">
+                                    </td>
+                                </tr>
+                            </form>
                     <%
                         }
                     %>
                     </tbody>
                 </table>
+                <input type="submit" onclick="updateAllAccountinfo(<%=count - 1%>)">
+
         <%
             } else {
         %>

@@ -32,7 +32,7 @@ public class UserDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "SELECT fullName, roleID, gender, phone, address FROM [User]"
+                String sql = "SELECT fullName, roleID, gender, phone, address FROM [User] "
                         + "WHERE id=? AND password=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, userID);
@@ -71,7 +71,7 @@ public class UserDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null){
-                String sql = "SELECT id, password, fullName, gender, phone, address FROM [User]" +
+                String sql = "SELECT id, password, fullName, gender, phone, address FROM [User] " +
                                 "Where roleID=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, roleID);
@@ -107,8 +107,8 @@ public class UserDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null){
-                String sql = "UPDATE [User]" +
-                                "SET password=?, fullName=?, gender =?, phone =?, address =?" +
+                String sql = "UPDATE [User] " +
+                                "SET password=?, fullName=?, gender =?, phone =?, address =? " +
                                 "WHERE id = ?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, user.getPassword());
@@ -119,6 +119,96 @@ public class UserDAO {
                 stm.setString(6, user.getId());
 
                 stm.executeUpdate();
+            }
+        } catch (Exception e){
+
+        } finally {
+            try {
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e){
+
+            }
+        }
+    }
+
+    public boolean isExitsUserID(String id) throws SQLException{
+        boolean result = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = "SELECT id FROM [User] " +
+                            "WHERE id=?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, id);
+                rs= stm.executeQuery();
+                if (rs.next()){
+                    result = true;
+                }
+            }
+        } catch (Exception e){
+
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e){
+
+            }
+        }
+        return result;
+    }
+
+    public void creatUser(UserDTO user) throws SQLException{
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null && user != null){
+                String sql = "INSERT INTO [User](id, password, fullName, gender, phone, address, roleID) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, user.getId());
+                stm.setString(2, user.getPassword());
+                stm.setString(3, user.getFullName());
+                stm.setString(4, user.getGender());
+                stm.setString(5, user.getPhone());
+                stm.setString(6, user.getAddress());
+                stm.setString(7, user.getRoleID());
+
+                stm.executeUpdate();
+
+            }
+        } catch (Exception e){
+
+        } finally {
+            try {
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e){
+
+            }
+        }
+    }
+
+    public void deleteUser(String id) throws SQLException{
+        Connection conn = null;
+        PreparedStatement stm = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = "DELETE [User] " +
+                        "WHERE id=?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, id);
+                stm.executeUpdate();
+
             }
         } catch (Exception e){
 

@@ -18,8 +18,11 @@
     Username<input type="text" name="userID"/></br>
     Password<input type="password" name="password"/></br>
     <input type="submit" value="Login" name="btnAction"/>
-    <input type="submit" value="Register" name="btnAction"/>
     <input type="reset" value="Reset"/>
 </form>
+<button onclick="window.location.href='creat_user_account.jsp'">Register</button>
+
+
+
 </body>
 </html>

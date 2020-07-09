@@ -21,6 +21,9 @@ public class MainController extends HttpServlet {
     private static final String LOGIN = "LoginController";
     private static final String LOGOUT = "LogoutController";
     private static final String MANAGE_ACCOUNT = "ManageAccountController";
+    private static final String UPDATE_ACCOUNT_INFO = "UpdateAccountInfoController";
+    private static final String CREAT_USER_ACCOUNT = "CreatUserAccountController";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,7 +45,12 @@ public class MainController extends HttpServlet {
                 url = LOGOUT;
             } else if (action.equals("ManageAccount")){
                 url = MANAGE_ACCOUNT;
+            } else if (action.equals("Update account info")){
+                url = UPDATE_ACCOUNT_INFO;
+            } else if (action.equals("Creat user account")){
+                url = CREAT_USER_ACCOUNT;
             }
+
         } catch (Exception e){
             log("ERROR AT MAINCONTROLLER" + e.toString());
         } finally {
