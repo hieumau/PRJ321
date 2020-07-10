@@ -19,7 +19,7 @@ public class BookDAO {
             conn = DBUtils.getConnection();
             if (conn != null){
                 String sql = "SELECT '' FROM [Book] " +
-                        "WHERE id=? AND available > 0";
+                        "WHERE id=? AND available > 0 AND status = 1";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, id);
                 rs= stm.executeQuery();
@@ -49,7 +49,7 @@ public class BookDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null){
-                String sql = "SELECT name, author, publisher, total, available, publishYear FROM [Book] " +
+                String sql = "SELECT name, author, publisher, total, available, publishYear, status FROM [Book] " +
                         "Where id=?";
                 stm = conn.prepareStatement(sql);
                 stm.setInt(1, Integer.parseInt(bookID));
@@ -151,7 +151,7 @@ public class BookDAO {
             conn = DBUtils.getConnection();
             if (conn != null){
                 String sql = "SELECT available FROM [Book] " +
-                        "WHERE id=?";
+                        "WHERE id=? AND status = 1";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, id);
                 rs= stm.executeQuery();
@@ -182,7 +182,7 @@ public class BookDAO {
             conn = DBUtils.getConnection();
             if (conn != null){
                 String sql = "SELECT total FROM [Book] " +
-                        "WHERE id=?";
+                        "WHERE id=? AND status = 1";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, id);
                 rs= stm.executeQuery();
@@ -212,7 +212,7 @@ public class BookDAO {
             conn = DBUtils.getConnection();
             if (conn != null){
                 String sql = "SELECT id, name, author, publisher, total, available, publishYear FROM [Book] " +
-                        "Where available > 0";
+                        "Where available > 0 AND status = 1";
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
 
@@ -251,7 +251,8 @@ public class BookDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null){
-                String sql = "SELECT id, name, author, publisher, total, available, publishYear FROM [Book] ";
+                String sql = "SELECT id, name, author, publisher, total, available, publishYear FROM [Book] " +
+                        "WHERE status = 1";
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
 

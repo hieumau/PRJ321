@@ -2,7 +2,7 @@ package sample.account.dtos;
 
 public class UserDTO {
     private String id, password, fullName, roleID, gender, phone, address;
-
+    private boolean status;
     public UserDTO(String id, String password, String fullName, String roleID, String gender, String phone, String address) {
         this.id = id;
         this.password = password;
@@ -11,6 +11,18 @@ public class UserDTO {
         this.gender = gender;
         this.phone = phone;
         this.address = address;
+        this.status = true;
+    }
+
+    public UserDTO(String id, String password, String fullName, String roleID, String gender, String phone, String address, boolean status) {
+        this.id = id;
+        this.password = password;
+        this.fullName = fullName;
+        this.roleID = roleID;
+        this.gender = gender;
+        this.phone = phone;
+        this.address = address;
+        this.status = status;
     }
 
     public String getId() {
@@ -67,5 +79,13 @@ public class UserDTO {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

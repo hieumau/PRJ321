@@ -13,6 +13,8 @@ import sample.account.dtos.UserDTO;
 import sample.book.controllers.ViewLibraryController;
 import sample.cart.controllers.AddToCartController;
 import sample.cart.controllers.CheckOutController;
+import sample.cart.controllers.ViewCartController;
+import sample.order.controllers.ViewUserNotReturnedOrderController;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -63,6 +65,9 @@ public class AuthenFilter implements Filter {
         userResource.add("cart.jsp");
         userResource.add("check_out.jsp");
         userResource.add(CheckOutController.class.getSimpleName());
+        userResource.add(ViewCartController.class.getSimpleName());
+        userResource.add(ViewUserNotReturnedOrderController.class.getSimpleName());
+        userResource.add("user_not_returned_order_list.jsp");
 
         adminResource.add("");
         adminResource.add("login.jsp");

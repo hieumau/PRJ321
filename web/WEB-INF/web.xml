@@ -58,6 +58,15 @@
         <servlet-name>CheckOutController</servlet-name>
         <servlet-class>sample.cart.controllers.CheckOutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewCartController</servlet-name>
+        <servlet-class>sample.cart.controllers.ViewCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewUserOrderController</servlet-name>
+        <servlet-class>sample.order.controllers.ViewUserNotReturnedOrderController</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -105,6 +114,14 @@
     <servlet-mapping>
         <servlet-name>CheckOutController</servlet-name>
         <url-pattern>/CheckOutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCartController</servlet-name>
+        <url-pattern>/ViewCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewUserOrderController</servlet-name>
+        <url-pattern>/ViewUserOrderController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

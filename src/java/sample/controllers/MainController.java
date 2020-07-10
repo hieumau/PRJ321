@@ -9,6 +9,8 @@ import sample.account.controllers.CreatUserAccountController;
 import sample.book.controllers.ViewLibraryController;
 import sample.cart.controllers.AddToCartController;
 import sample.cart.controllers.CheckOutController;
+import sample.cart.controllers.ViewCartController;
+import sample.order.controllers.ViewUserNotReturnedOrderController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,8 +30,10 @@ public class MainController extends HttpServlet {
     private static final String CREAT_USER_ACCOUNT = CreatUserAccountController.class.getSimpleName();
     private static final String ADD_TO_CART = AddToCartController.class.getSimpleName();
     private static final String VIEW_LIBRARY = ViewLibraryController.class.getSimpleName();
-    private static final String VIEW_CART = "cart.jsp";
+    private static final String VIEW_CART = ViewCartController.class.getSimpleName();
     private static final String CHECK_OUT = CheckOutController.class.getSimpleName();
+    private static final String VIEW_USER_NOT_RETURNED_ORDER = "" + ViewUserNotReturnedOrderController.class.getSimpleName();
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -64,6 +68,8 @@ public class MainController extends HttpServlet {
                 url = VIEW_CART;
             } else if (action.equals("Check out")){
                 url = CHECK_OUT;
+            } else if (action.equals("View user not returned order")){
+                url = VIEW_USER_NOT_RETURNED_ORDER;
             }
 
         } catch (Exception e) {

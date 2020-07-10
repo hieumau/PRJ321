@@ -6,13 +6,11 @@
 package sample.cart.controllers;
 
 import sample.book.daos.BookDAO;
-import sample.cart.daos.CartDAO;
 import sample.cart.dtos.CartDTO;
 import sample.order.dtos.OrderDetailDTO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author saost
  */
-public class CheckOutController extends HttpServlet {
-    private static final String SUCCESS = "check_out.jsp";
+public class ViewCartController extends HttpServlet {
+    private static final String SUCCESS = "cart.jsp";
     private static final String ERROR = "cart.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,35 +36,19 @@ public class CheckOutController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         String url = ERROR;
-        boolean isEnoughBook = true;
         try {
             HttpSession session = request.getSession();
-            CartDTO cart = (CartDTO) session.getAttribute("CART");
+            CartDTO cartDTO = (CartDTO) session.getAttribute("CART");
             BookDAO bookDAO = new BookDAO();
-            if (cart != null){
-                for (OrderDetailDTO orderDetail: cart.getCart().values()){
-                    int orderQuantity = orderDetail.getQuantity();
-                    int available = bookDAO.getAvailable(orderDetail.getBook().getId() + "");
-                    if (orderQuantity > available){
-                        isEnoughBook = false;
-                        break;
-                    }
-                }
-                if (isEnoughBook){
-                    CartDAO cartDAO = new CartDAO();
-                    if (cartDAO.checkOut(cart)){
-                        url = SUCCESS;
-                        session.setAttribute("CART", null);
-                    }
-                } else {
-
-                }
+            for (OrderDetailDTO orderDetailDTO: cartDTO.getCart().values()){
+                int bookID = orderDetailDTO.getBook().getId();
+                orderDetailDTO.getBook().setAvailable(bookDAO.getAvailable(bookID + ""));
             }
+            url = SUCCESS;
         } catch (Exception e){
 
-        } finally {
+        }finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

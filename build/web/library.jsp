@@ -24,6 +24,8 @@
         <%= authUser.getFullName()%></h2>
     <a href="MainController?btnAction=Logout">Logout</a>
     <a href="MainController?btnAction=View cart">View Cart</a>
+    <a href="MainController?btnAction=View user not returned order">Borrowed</a>
+
     <%
         List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("LIST_AVAILABLE_BOOK");
         if (bookList != null && !bookList.isEmpty()){

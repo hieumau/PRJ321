@@ -13,3 +13,12 @@ WHERE id=2 AND available > 0
 
 SELECT id, name, author, publisher, total, available, publishYear FROM [Book] 
 Where available > 10
+
+ALTER TABLE [User] ADD DEFAULT 1 FOR [status]
+
+ALTER TABLE [Book] ADD DEFAULT 1 FOR [status]
+
+ALTER TABLE [Order] ADD DEFAULT 0 FOR [returned]
+
+ALTER TABLE [Order]
+    ALTER returned DROP DEFAULT

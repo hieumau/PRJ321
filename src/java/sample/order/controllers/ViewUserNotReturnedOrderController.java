@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sample.cart.controllers;
+package sample.order.controllers;
 
-import sample.book.daos.BookDAO;
-import sample.cart.daos.CartDAO;
-import sample.cart.dtos.CartDTO;
-import sample.order.dtos.OrderDetailDTO;
+import sample.account.dtos.UserDTO;
+import sample.order.daos.OrderDAO;
+import sample.order.dtos.OrderDTO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,9 +22,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author saost
  */
-public class CheckOutController extends HttpServlet {
-    private static final String SUCCESS = "check_out.jsp";
-    private static final String ERROR = "cart.jsp";
+public class ViewUserNotReturnedOrderController extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,36 +36,17 @@ public class CheckOutController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String url = ERROR;
-        boolean isEnoughBook = true;
+        String url = "user_not_returned_order_list.jsp";
         try {
+            OrderDAO orderDAO = new OrderDAO();
             HttpSession session = request.getSession();
-            CartDTO cart = (CartDTO) session.getAttribute("CART");
-            BookDAO bookDAO = new BookDAO();
-            if (cart != null){
-                for (OrderDetailDTO orderDetail: cart.getCart().values()){
-                    int orderQuantity = orderDetail.getQuantity();
-                    int available = bookDAO.getAvailable(orderDetail.getBook().getId() + "");
-                    if (orderQuantity > available){
-                        isEnoughBook = false;
-                        break;
-                    }
-                }
-                if (isEnoughBook){
-                    CartDAO cartDAO = new CartDAO();
-                    if (cartDAO.checkOut(cart)){
-                        url = SUCCESS;
-                        session.setAttribute("CART", null);
-                    }
-                } else {
-
-                }
-            }
+            UserDTO user = (UserDTO) session.getAttribute("AUTH_USER");
+            List<OrderDTO> orderList = orderDAO.getNotReturnedOrderList(user.getId());
+            request.setAttribute("ORDER_LIST", orderList);
         } catch (Exception e){
 
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher(url).forward(request,response);
         }
     }
 

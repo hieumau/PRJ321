@@ -4,7 +4,6 @@ import sample.account.dtos.UserDTO;
 import sample.book.dtos.BookDTO;
 import sample.order.dtos.OrderDetailDTO;
 
-import java.beans.IntrospectionException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +43,7 @@ public class CartDTO {
             int quantity = this.cart.get(book.getId()).getQuantity();
             this.cart.get(book.getId()).setQuantity(quantity + 1);
         } else {
-            OrderDetailDTO orderDetail = new OrderDetailDTO(0, book, 0, 1, "");
+            OrderDetailDTO orderDetail = new OrderDetailDTO(0, book, 1, "");
             cart.put(book.getId(), orderDetail);
         }
     }
