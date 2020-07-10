@@ -5,12 +5,18 @@
  */
 package sample.cart.controllers;
 
+import sample.book.daos.BookDAO;
+import sample.cart.dtos.CartDTO;
+import sample.order.dtos.OrderDetailDTO;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,8 +39,25 @@ public class CheckOutController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String url = ERROR;
+        boolean isEnoughBook = true;
         try {
+            HttpSession session = request.getSession();
+            CartDTO cart = (CartDTO) session.getAttribute("CART");
+            BookDAO bookDAO = new BookDAO();
+            if (cart != null){
+                for (OrderDetailDTO orderDetail: cart.getCart().values()){
+                    int orderQuantity = orderDetail.getQuantity();
+                    int available = bookDAO.getAvailable(orderDetail.getBook().getId() + "");
+                    if (orderQuantity < available){
+                        isEnoughBook = false;
+                        break;
+                    }
+                }
+                if (isEnoughBook){
+                    url = SUCCESS;
 
+                }
+            }
         } catch (Exception e){
 
         } finally {

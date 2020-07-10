@@ -86,6 +86,7 @@
         %>
         </tbody>
     </table>
+    <button onclick="window.location.href='MainController?btnAction=Check out'">Check Out</button>
     <%
     } else {
     %>
@@ -94,6 +95,5 @@
         }
     %>
 
-    <button onclick="window.location.href='MainController?btnAction=Check out'">Check Out</button>
     </body>
 </html>
