@@ -1,4 +1,4 @@
-<%@ page import="sample.dtos.UserDTO" %>
+<%@ page import="sample.account.dtos.UserDTO" %>
 <%@ page import="java.util.List" %><%--
     Document   : account_list_manager
     Created on : Jul 8, 2020, 11:00:33 AM
@@ -17,9 +17,6 @@
         <h1>Welcome:
             <%
                 UserDTO authUser = (UserDTO) session.getAttribute("AUTH_USER");
-                if (!authUser.getRoleID().equals("AD")){
-                    response.sendRedirect("login.jsp");
-                }
             %><%= authUser.getFullName()%></h1>
         <a href="MainController?btnAction=Logout">Logout</a>
         <%

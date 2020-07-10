@@ -1,4 +1,4 @@
-<%@ page import="sample.dtos.UserErrorDTO" %><%--
+<%@ page import="sample.account.dtos.UserErrorDTO" %><%--
     Document   : creat_user_account
     Created on : Jul 9, 2020, 10:51:47 AM
     Author     : saost

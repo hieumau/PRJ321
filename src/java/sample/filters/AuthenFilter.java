@@ -5,10 +5,14 @@
  */
 package sample.filters;
 
-import sample.controllers.CreatUserAccountController;
-import sample.controllers.LogoutController;
-import sample.controllers.UpdateAccountInfoController;
-import sample.dtos.UserDTO;
+import sample.account.controllers.CreatUserAccountController;
+import sample.account.controllers.LogoutController;
+import sample.account.controllers.ManageAccountController;
+import sample.account.controllers.UpdateAccountInfoController;
+import sample.account.dtos.UserDTO;
+import sample.book.controllers.ViewLibraryController;
+import sample.cart.controllers.AddToCartController;
+import sample.cart.controllers.CheckOutController;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -52,6 +56,13 @@ public class AuthenFilter implements Filter {
         userResource.add("LogoutController");
         userResource.add("test_false.html");
         userResource.add("test_success.html");
+        userResource.add("library.jsp");
+        userResource.add(ViewLibraryController.class.getSimpleName());
+        userResource.add(AddToCartController.class.getSimpleName());
+        userResource.add("out_of_book.jsp");
+        userResource.add("cart.jsp");
+        userResource.add("check_out.jsp");
+        userResource.add(CheckOutController.class.getSimpleName());
 
         adminResource.add("");
         adminResource.add("login.jsp");
@@ -60,9 +71,9 @@ public class AuthenFilter implements Filter {
         adminResource.add("LogoutController");
         adminResource.add("test_false.html");
         adminResource.add("test_success.html");
-        
+        adminResource.add("account_list_manager.jsp");
         adminResource.add("ManageAccountController");
-        adminResource.add("UpdateAccountInfoController");
+        adminResource.add(UpdateAccountInfoController.class.getSimpleName());
     }
 
     /**
@@ -83,9 +94,9 @@ public class AuthenFilter implements Filter {
             HttpServletResponse rs = (HttpServletResponse) response;
             String uri = rq.getRequestURI();
             log(uri);
+
             if ((uri.contains(".js")
                     || uri.contains(".jpg")
-                    || uri.contains("MainController")
                     || uri.contains(".png")
                     || uri.contains(".jpeg"))
                     && !uri.contains(".jsp")) {

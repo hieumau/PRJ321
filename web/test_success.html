@@ -13,6 +13,9 @@ and open the template in the editor.
     <body>
         <div>That work fine</div>
         <a href="MainController?btnAction=Logout">Logout</a>
-        <a href="MainController?btnAction=ManageAccount">Manage User Account</a>
+        <!--<a href="MainController?btnAction=ManageAccount">Manage User Account</a>-->
+        <form action="MainController" method="POST">
+            <input type="submit" name="btnAction" value="ManageAccount" />
+        </form>
     </body>
 </html>

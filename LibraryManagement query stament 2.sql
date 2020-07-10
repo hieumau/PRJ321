@@ -8,3 +8,8 @@ UPDATE [User]
 SET password='1', fullName='', gender = '', phone = '', address = ''
 WHERE id = 'admin'
 
+SELECT '' FROM [Book]
+WHERE id=2 AND available > 0
+
+SELECT id, name, author, publisher, total, available, publishYear FROM [Book] 
+Where available > 10

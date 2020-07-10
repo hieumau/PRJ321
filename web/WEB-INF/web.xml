@@ -7,6 +7,8 @@
     <filter-mapping>
         <filter-name>AuthenFilter</filter-name>
         <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
     <servlet>
         <servlet-name>MainController</servlet-name>
@@ -14,35 +16,47 @@
     </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>sample.controllers.LoginController</servlet-class>
+        <servlet-class>sample.account.controllers.LoginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChangePasswordController</servlet-name>
-        <servlet-class>sample.controllers.ChangePasswordController</servlet-class>
+        <servlet-class>sample.account.controllers.ChangePasswordController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreatUserAccountController</servlet-name>
-        <servlet-class>sample.controllers.CreatUserAccountController</servlet-class>
+        <servlet-class>sample.account.controllers.CreatUserAccountController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreatAdminAccountController</servlet-name>
-        <servlet-class>sample.controllers.CreatAdminAccountController</servlet-class>
+        <servlet-class>sample.account.controllers.CreatAdminAccountController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteAccountController</servlet-name>
-        <servlet-class>sample.controllers.DeleteAccountController</servlet-class>
+        <servlet-class>sample.account.controllers.DeleteAccountController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutController</servlet-name>
-        <servlet-class>sample.controllers.LogoutController</servlet-class>
+        <servlet-class>sample.account.controllers.LogoutController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManageAccountController</servlet-name>
-        <servlet-class>sample.controllers.ManageAccountController</servlet-class>
+        <servlet-class>sample.account.controllers.ManageAccountController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateAccountInfoController</servlet-name>
-        <servlet-class>sample.controllers.UpdateAccountInfoController</servlet-class>
+        <servlet-class>sample.account.controllers.UpdateAccountInfoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewLibraryController</servlet-name>
+        <servlet-class>sample.book.controllers.ViewLibraryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCartController</servlet-name>
+        <servlet-class>sample.cart.controllers.AddToCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckOutController</servlet-name>
+        <servlet-class>sample.cart.controllers.CheckOutController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -79,6 +93,18 @@
     <servlet-mapping>
         <servlet-name>UpdateAccountInfoController</servlet-name>
         <url-pattern>/UpdateAccountInfoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewLibraryController</servlet-name>
+        <url-pattern>/ViewLibraryController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartController</servlet-name>
+        <url-pattern>/AddToCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckOutController</servlet-name>
+        <url-pattern>/CheckOutController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
