@@ -23,7 +23,10 @@
         %>
         <%= authUser.getFullName()%></h2>
     <a href="MainController?btnAction=Logout">Logout</a>
-    <a href="MainController?btnAction=View library"><b>Back to Library</b></a>
+    <a href="MainController?btnAction=View library">Library</a>
+    <a href="MainController?btnAction=View cart">View Cart</a>
+    <a href="MainController?btnAction=View user not returned order">Borrowed</a>
+    <a href="MainController?btnAction=View user returned order">History</a>
 
     <%
         CartDTO cart = (CartDTO) session.getAttribute("CART");

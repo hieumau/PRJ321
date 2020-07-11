@@ -13,10 +13,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>User's Order</title>
+        <title>User's History Order</title>
     </head>
     <body>
-    <h1>User's Order</h1>
+    <h1>User's History Order</h1>
     <h2>Welcome:
         <%
             UserDTO authUser = (UserDTO) session.getAttribute("AUTH_USER");
@@ -27,6 +27,8 @@
     <a href="MainController?btnAction=View cart">View Cart</a>
     <a href="MainController?btnAction=View user not returned order">Borrowed</a>
     <a href="MainController?btnAction=View user returned order">History</a>
+
+
 
     <%
         List<OrderDTO> orderDTOList = (List<OrderDTO>) request.getAttribute("ORDER_LIST");
@@ -40,7 +42,6 @@
             <th>Borrow Date</th>
             <th>Return Date</th>
             <th>Detail</th>
-            <th>Return</th>
         </tr>
         </thead>
         <tbody>
@@ -93,10 +94,6 @@
                         </tbody>
                     </table>
                 </td>
-
-                <td>
-                    <input type="submit" name="btnAction" value="Return order">
-                </td>
             </tr>
         </form>
         <%
@@ -104,7 +101,6 @@
         %>
         </tbody>
     </table>
-<%--    <button onclick="window.location.href='MainController?btnAction=Check out'">Check Out</button>--%>
     <%
     } else {
     %>

@@ -9,10 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Check out success</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-    <a href="MainController?btnAction=View library">Library</a>
+        <h1>CHECK OUT SUCCESSFULL</h1>
+        <a href="MainController?btnAction=View library">Library</a>
+        <a href="MainController?btnAction=View cart">View Cart</a>
+        <a href="MainController?btnAction=View user returned order">History</a>
+
     </body>
 </html>

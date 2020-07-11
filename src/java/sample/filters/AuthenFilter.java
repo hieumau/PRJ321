@@ -7,14 +7,15 @@ package sample.filters;
 
 import sample.account.controllers.CreatUserAccountController;
 import sample.account.controllers.LogoutController;
-import sample.account.controllers.ManageAccountController;
 import sample.account.controllers.UpdateAccountInfoController;
 import sample.account.dtos.UserDTO;
 import sample.book.controllers.ViewLibraryController;
 import sample.cart.controllers.AddToCartController;
 import sample.cart.controllers.CheckOutController;
 import sample.cart.controllers.ViewCartController;
+import sample.order.controllers.ReturnOrderController;
 import sample.order.controllers.ViewUserNotReturnedOrderController;
+import sample.order.controllers.ViewUserReturnedOrderController;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -68,6 +69,9 @@ public class AuthenFilter implements Filter {
         userResource.add(ViewCartController.class.getSimpleName());
         userResource.add(ViewUserNotReturnedOrderController.class.getSimpleName());
         userResource.add("user_not_returned_order_list.jsp");
+        userResource.add(ReturnOrderController.class.getSimpleName());
+        userResource.add("user_returned_order_list.jsp");
+        userResource.add(ViewUserReturnedOrderController.class.getSimpleName());
 
         adminResource.add("");
         adminResource.add("login.jsp");

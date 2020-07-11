@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sample.cart.controllers;
+package sample.order.controllers;
 
+import sample.account.dtos.UserDTO;
 import sample.book.daos.BookDAO;
+import sample.book.dtos.BookDTO;
 import sample.cart.dtos.CartDTO;
-import sample.order.dtos.OrderDetailDTO;
+import sample.order.daos.OrderDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,9 +23,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author saost
  */
-public class ViewCartController extends HttpServlet {
-    private static final String SUCCESS = "cart.jsp";
-    private static final String ERROR = "cart.jsp";
+public class ReturnOrderController extends HttpServlet {
+    private static final String VIEW_PAGE = ViewUserNotReturnedOrderController.class.getSimpleName();
+    private static final String ERROR = "test_false.html";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,21 +40,14 @@ public class ViewCartController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            HttpSession session = request.getSession();
-            CartDTO cartDTO = (CartDTO) session.getAttribute("CART");
-
-            if (cartDTO !=null){
-                BookDAO bookDAO = new BookDAO();
-                for (OrderDetailDTO orderDetailDTO: cartDTO.getCart().values()){
-                    int bookID = orderDetailDTO.getBook().getId();
-                    orderDetailDTO.getBook().setAvailable(bookDAO.getAvailable(bookID + ""));
-                }
-                url = SUCCESS;
+            String orderID = request.getParameter("id");
+            OrderDAO orderDAO = new OrderDAO();
+            if (orderDAO.returnOrder(Integer.parseInt(orderID))){
+                url = VIEW_PAGE;
             }
-
         } catch (Exception e){
 
-        }finally {
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

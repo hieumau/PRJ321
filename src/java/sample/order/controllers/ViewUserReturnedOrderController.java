@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sample.cart.controllers;
+package sample.order.controllers;
 
-import sample.book.daos.BookDAO;
-import sample.cart.dtos.CartDTO;
-import sample.order.dtos.OrderDetailDTO;
+import sample.account.dtos.UserDTO;
+import sample.order.daos.OrderDAO;
+import sample.order.dtos.OrderDTO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +22,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author saost
  */
-public class ViewCartController extends HttpServlet {
-    private static final String SUCCESS = "cart.jsp";
-    private static final String ERROR = "cart.jsp";
+public class ViewUserReturnedOrderController extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,24 +36,17 @@ public class ViewCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = "user_returned_order_list.jsp";
         try {
+            OrderDAO orderDAO = new OrderDAO();
             HttpSession session = request.getSession();
-            CartDTO cartDTO = (CartDTO) session.getAttribute("CART");
-
-            if (cartDTO !=null){
-                BookDAO bookDAO = new BookDAO();
-                for (OrderDetailDTO orderDetailDTO: cartDTO.getCart().values()){
-                    int bookID = orderDetailDTO.getBook().getId();
-                    orderDetailDTO.getBook().setAvailable(bookDAO.getAvailable(bookID + ""));
-                }
-                url = SUCCESS;
-            }
-
+            UserDTO user = (UserDTO) session.getAttribute("AUTH_USER");
+            List<OrderDTO> orderList = orderDAO.getReturnedOrderList(user.getId());
+            request.setAttribute("ORDER_LIST", orderList);
         } catch (Exception e){
 
-        }finally {
-            request.getRequestDispatcher(url).forward(request, response);
+        } finally {
+            request.getRequestDispatcher(url).forward(request,response);
         }
     }
 

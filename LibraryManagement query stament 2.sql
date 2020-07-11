@@ -1,3 +1,4 @@
+
 SELECT fullName, roleID FROM [User]
 WHERE id='admin' AND password='1'
 
@@ -20,5 +21,26 @@ ALTER TABLE [Book] ADD DEFAULT 1 FOR [status]
 
 ALTER TABLE [Order] ADD DEFAULT 0 FOR [returned]
 
-ALTER TABLE [Order]
-    ALTER returned DROP DEFAULT
+UPDATE Book 
+SET available = available + 10
+WHERE id=1
+
+SELECT * 
+FROM Book
+
+SELECT *
+FROM [User]
+
+SELECT id, borrowDate, returnDate FROM [Order] 
+                      Where userID='user' AND returned=0
+
+UPDATE [Order]
+SET returned=1
+WHERE id = 8
+
+SELECT * FROM [Order]
+                     
+
+						UPDATE [Order] " +
+                        "SET returned=1 AND returnDate=? " +
+                        "WHERE id = ?"

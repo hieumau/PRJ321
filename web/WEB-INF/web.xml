@@ -66,7 +66,18 @@
         <servlet-name>ViewUserOrderController</servlet-name>
         <servlet-class>sample.order.controllers.ViewUserNotReturnedOrderController</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>ViewUserNotReturnedOrderController</servlet-name>
+        <servlet-class>sample.order.controllers.ViewUserNotReturnedOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReturnOrderController</servlet-name>
+        <servlet-class>sample.order.controllers.ReturnOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewUserReturnedOrderController</servlet-name>
+        <servlet-class>sample.order.controllers.ViewUserReturnedOrderController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -122,6 +133,18 @@
     <servlet-mapping>
         <servlet-name>ViewUserOrderController</servlet-name>
         <url-pattern>/ViewUserOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewUserNotReturnedOrderController</servlet-name>
+        <url-pattern>/ViewUserNotReturnedOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReturnOrderController</servlet-name>
+        <url-pattern>/ReturnOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewUserReturnedOrderController</servlet-name>
+        <url-pattern>/ViewUserReturnedOrderController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

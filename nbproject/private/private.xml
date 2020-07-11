@@ -9,6 +9,8 @@
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/controllers/MainController.java</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/test_false.html</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/conf/MANIFEST.MF</file>
+            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/order/daos/OrderDetailDAO.java</file>
+            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/order/dtos/OrderDTO.java</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/cart/controllers/CheckOutController.java</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/check_out.jsp</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/account/controllers/LoginController.java</file>
@@ -16,6 +18,7 @@
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/creat_admin_account.jsp</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/order/daos/OrderDAO.java</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/cart/daos/CartDAO.java</file>
+            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/order/controllers/ReturnOrderController.java</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/user_not_returned_order_list.jsp</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/out_of_book.jsp</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/filters/AuthenFilter.java</file>
@@ -23,6 +26,8 @@
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/library.jsp</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/main.js</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/cart/dtos/CartDTO.java</file>
+            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/user_returned_order_list.jsp</file>
+            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/order/controllers/ViewUserReturnedOrderController.java</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/login.jsp</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/test_success.html</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/META-INF/context.xml</file>

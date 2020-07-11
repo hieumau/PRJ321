@@ -10,13 +10,16 @@ import sample.book.controllers.ViewLibraryController;
 import sample.cart.controllers.AddToCartController;
 import sample.cart.controllers.CheckOutController;
 import sample.cart.controllers.ViewCartController;
-import sample.order.controllers.ViewUserNotReturnedOrderController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import sample.order.controllers.ReturnOrderController;
+import sample.order.controllers.ViewUserNotReturnedOrderController;
+import sample.order.controllers.ViewUserReturnedOrderController;
 
 /**
  * @author saost
@@ -32,7 +35,9 @@ public class MainController extends HttpServlet {
     private static final String VIEW_LIBRARY = ViewLibraryController.class.getSimpleName();
     private static final String VIEW_CART = ViewCartController.class.getSimpleName();
     private static final String CHECK_OUT = CheckOutController.class.getSimpleName();
-    private static final String VIEW_USER_NOT_RETURNED_ORDER = "" + ViewUserNotReturnedOrderController.class.getSimpleName();
+    private static final String VIEW_USER_NOT_RETURNED_ORDER = ViewUserNotReturnedOrderController.class.getSimpleName();
+    private static final String VIEW_USER_RETURNED_ORDER = ViewUserReturnedOrderController.class.getSimpleName();
+    private static final String RETURN_ORDER = ReturnOrderController.class.getSimpleName();
 
 
     /**
@@ -70,8 +75,11 @@ public class MainController extends HttpServlet {
                 url = CHECK_OUT;
             } else if (action.equals("View user not returned order")){
                 url = VIEW_USER_NOT_RETURNED_ORDER;
+            } else if (action.equals("Return order")){
+                url = RETURN_ORDER;
+            } else if (action.equals("View user returned order")) {
+                url = VIEW_USER_RETURNED_ORDER;
             }
-
         } catch (Exception e) {
             log("ERROR AT MAINCONTROLLER" + e.toString());
         }

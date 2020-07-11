@@ -23,12 +23,13 @@
         %>
         <%= authUser.getFullName()%></h2>
     <a href="MainController?btnAction=Logout">Logout</a>
-    <a href="MainController?btnAction=View library"><b>Back to Library</b></a>
+    <a href="MainController?btnAction=View library">Library</a>
     <a href="MainController?btnAction=View cart">View Cart</a>
+    <a href="MainController?btnAction=View user not returned order">Borrowed</a>
+    <a href="MainController?btnAction=View user returned order">History</a>
 
     <%
-        CartDTO cart = (CartDTO) session.getAttribute("CART");
-        List<OrderDTO> orderDTOList = (List<OrderDTO>) session.getAttribute("ORDER_LIST");
+        List<OrderDTO> orderDTOList = (List<OrderDTO>) request.getAttribute("ORDER_LIST");
         if (orderDTOList != null && !orderDTOList.isEmpty()){
     %>
     <table border="1">
@@ -63,22 +64,34 @@
                     <%= dto.getReturnDate()%>
                 </td>
                 <td>
-                    <%for (OrderDetailDTO orderDetailDTO: dto.getOrderDetailList()){%>
-                        <td>
-                            <%= orderDetailDTO.getBook().getId()%>
-                        </td>
-                        <td>
-                            <%= orderDetailDTO.getBook().getName()%>
-                        </td>
-                        <td>
-                            <%= orderDetailDTO.getQuantity()%>
-                        </td>
-                        <td>
-                            <%= orderDetailDTO.getNote()%>
-                        </td>
-                    <%
-                    }
-                    %>
+                    <table border="1"class="fixed">
+                        <col width=300 />
+                        <col width=60 />
+                        <col width=300/>
+                        <thead>
+                            <th>Book Name</th>
+                            <th>Quantity</th>
+                            <th>Note</th>
+                        </thead>
+                        <tbody>
+                        <%for (OrderDetailDTO orderDetailDTO: dto.getOrderDetailList()){%>
+                        <tr>
+
+                            <td>
+                                <%= orderDetailDTO.getBook().getName()%>
+                            </td>
+                            <td>
+                                <%= orderDetailDTO.getQuantity()%>
+                            </td>
+                            <td>
+                                <%= orderDetailDTO.getNote()%>
+                            </td>
+                            <%
+                                }
+                            %>
+                        </tr>
+                        </tbody>
+                    </table>
                 </td>
 
                 <td>
