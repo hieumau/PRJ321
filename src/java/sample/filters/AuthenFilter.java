@@ -5,17 +5,16 @@
  */
 package sample.filters;
 
+import sample.account.controllers.CreatAdminAccountController;
 import sample.account.controllers.CreatUserAccountController;
 import sample.account.controllers.LogoutController;
 import sample.account.controllers.UpdateAccountInfoController;
 import sample.account.dtos.UserDTO;
-import sample.book.controllers.ViewLibraryController;
+import sample.book.controllers.*;
 import sample.cart.controllers.AddToCartController;
 import sample.cart.controllers.CheckOutController;
 import sample.cart.controllers.ViewCartController;
-import sample.order.controllers.ReturnOrderController;
-import sample.order.controllers.ViewUserNotReturnedOrderController;
-import sample.order.controllers.ViewUserReturnedOrderController;
+import sample.order.controllers.*;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -83,6 +82,24 @@ public class AuthenFilter implements Filter {
         adminResource.add("account_list_manager.jsp");
         adminResource.add("ManageAccountController");
         adminResource.add(UpdateAccountInfoController.class.getSimpleName());
+        adminResource.add("admin_home_page.jsp");
+        adminResource.add(CreatUserAccountController.class.getSimpleName());
+        adminResource.add(CreatAdminAccountController.class.getSimpleName());
+        adminResource.add("creat_user_account.jsp");
+        adminResource.add("creat_admin_account.jsp");
+        adminResource.add(ViewAdminNotReturnedOrderController.class.getSimpleName());
+        adminResource.add(ViewAdminReturnedOrderController.class.getSimpleName());
+        adminResource.add("admin_not_returned_order_list.jsp");
+        adminResource.add("admin_returned_order_list.jsp");
+        adminResource.add(ReturnOrderAdminController.class.getSimpleName());
+        adminResource.add(ManageBookController.class.getSimpleName());
+        adminResource.add("book_list_manage.jsp");
+        adminResource.add(ExportBookController.class.getSimpleName());
+        adminResource.add(ImportBookController.class.getSimpleName());
+        adminResource.add(UpdateBookController.class.getSimpleName());
+        adminResource.add(CreatBookController.class.getSimpleName());
+        adminResource.add(DeleteBookController.class.getSimpleName());
+
     }
 
     /**

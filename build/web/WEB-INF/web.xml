@@ -78,6 +78,42 @@
         <servlet-name>ViewUserReturnedOrderController</servlet-name>
         <servlet-class>sample.order.controllers.ViewUserReturnedOrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewAdminNotReturnedOrderController</servlet-name>
+        <servlet-class>sample.order.controllers.ViewAdminNotReturnedOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewAdminReturnedOrderController</servlet-name>
+        <servlet-class>sample.order.controllers.ViewAdminReturnedOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReturnOrderAdminController</servlet-name>
+        <servlet-class>sample.order.controllers.ReturnOrderAdminController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageBookController</servlet-name>
+        <servlet-class>sample.book.controllers.ManageBookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImportBookController</servlet-name>
+        <servlet-class>sample.book.controllers.ImportBookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExportBookController</servlet-name>
+        <servlet-class>sample.book.controllers.ExportBookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateBookController</servlet-name>
+        <servlet-class>sample.book.controllers.UpdateBookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreatBookController</servlet-name>
+        <servlet-class>sample.book.controllers.CreatBookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteBookController</servlet-name>
+        <servlet-class>sample.book.controllers.DeleteBookController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -145,6 +181,42 @@
     <servlet-mapping>
         <servlet-name>ViewUserReturnedOrderController</servlet-name>
         <url-pattern>/ViewUserReturnedOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAdminNotReturnedOrderController</servlet-name>
+        <url-pattern>/ViewAdminNotReturnedOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAdminReturnedOrderController</servlet-name>
+        <url-pattern>/ViewAdminReturnedOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReturnOrderAdminController</servlet-name>
+        <url-pattern>/ReturnOrderAdminController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageBookController</servlet-name>
+        <url-pattern>/ManageBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImportBookController</servlet-name>
+        <url-pattern>/ImportBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExportBookController</servlet-name>
+        <url-pattern>/ExportBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBookController</servlet-name>
+        <url-pattern>/UpdateBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreatBookController</servlet-name>
+        <url-pattern>/CreatBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBookController</servlet-name>
+        <url-pattern>/DeleteBookController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

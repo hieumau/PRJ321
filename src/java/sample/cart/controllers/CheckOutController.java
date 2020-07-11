@@ -8,6 +8,7 @@ package sample.cart.controllers;
 import sample.book.daos.BookDAO;
 import sample.cart.daos.CartDAO;
 import sample.cart.dtos.CartDTO;
+import sample.order.controllers.ViewUserNotReturnedOrderController;
 import sample.order.dtos.OrderDetailDTO;
 
 import java.io.IOException;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpSession;
  * @author saost
  */
 public class CheckOutController extends HttpServlet {
-    private static final String SUCCESS = "check_out.jsp";
+    private static final String SUCCESS = ViewUserNotReturnedOrderController.class.getSimpleName();
     private static final String ERROR = "cart.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

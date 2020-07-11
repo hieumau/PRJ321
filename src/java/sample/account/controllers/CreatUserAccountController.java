@@ -45,7 +45,7 @@ public class CreatUserAccountController extends HttpServlet {
             String gender = request.getParameter("gender");
             String phone = request.getParameter("phone");
             String address = request.getParameter("address");
-            String roleID = request.getParameter("roleID");
+            String roleID = "US";
             boolean check = true;
             UserDAO dao = new UserDAO();
 

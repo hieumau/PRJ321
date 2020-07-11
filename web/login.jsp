@@ -1,5 +1,4 @@
-<%-- 
-    Document   : login
+<%--    Document   : login
     Created on : Jul 6, 2020, 11:14:17 AM
     Author     : saost
 --%>
@@ -15,6 +14,16 @@
 </head>
 <body>
 <form action="MainController" method="POST">
+    <%
+        String errorMessage = (String) session.getAttribute("ERROR_MESSAGE");
+        if (errorMessage != null){
+    %>
+        <h2><b><%= errorMessage%></b></h2><br>
+    <%
+            session.setAttribute("ERROR_MESSAGE", null);
+        }
+    %>
+
     Username<input type="text" name="userID"/></br>
     Password<input type="password" name="password"/></br>
     <input type="submit" value="Login" name="btnAction"/>

@@ -17,16 +17,7 @@
     </head>
     <body>
     <h1>User's Order</h1>
-    <h2>Welcome:
-        <%
-            UserDTO authUser = (UserDTO) session.getAttribute("AUTH_USER");
-        %>
-        <%= authUser.getFullName()%></h2>
-    <a href="MainController?btnAction=Logout">Logout</a>
-    <a href="MainController?btnAction=View library">Library</a>
-    <a href="MainController?btnAction=View cart">View Cart</a>
-    <a href="MainController?btnAction=View user not returned order">Borrowed</a>
-    <a href="MainController?btnAction=View user returned order">History</a>
+    <%@include file="user_header.jsp"%>
 
     <%
         List<OrderDTO> orderDTOList = (List<OrderDTO>) request.getAttribute("ORDER_LIST");
@@ -66,13 +57,17 @@
                 <td>
                     <table border="1"class="fixed">
                         <col width=300 />
-                        <col width=60 />
+                        <col width=70 />
                         <col width=300/>
+                    <%if (count == 2){%>
                         <thead>
-                            <th>Book Name</th>
-                            <th>Quantity</th>
-                            <th>Note</th>
+                        <th>Book Name</th>
+                        <th>Quantity</th>
+                        <th>Note</th>
                         </thead>
+                    <%
+                        }
+                    %>
                         <tbody>
                         <%for (OrderDetailDTO orderDetailDTO: dto.getOrderDetailList()){%>
                         <tr>

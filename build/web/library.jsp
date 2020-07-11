@@ -17,16 +17,7 @@
     </head>
     <body>
     <h1>Library</h1>
-    <h2>Welcome:
-        <%
-            UserDTO authUser = (UserDTO) session.getAttribute("AUTH_USER");
-        %>
-        <%= authUser.getFullName()%></h2>
-    <a href="MainController?btnAction=Logout">Logout</a>
-    <a href="MainController?btnAction=View library">Library</a>
-    <a href="MainController?btnAction=View cart">View Cart</a>
-    <a href="MainController?btnAction=View user not returned order">Borrowed</a>
-    <a href="MainController?btnAction=View user returned order">History</a>
+    <%@include file="user_header.jsp"%>
 
     <%
         List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("LIST_AVAILABLE_BOOK");

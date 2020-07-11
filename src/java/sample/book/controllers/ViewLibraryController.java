@@ -39,7 +39,7 @@ public class ViewLibraryController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            List<BookDTO> bookList = new ArrayList<>();
+            List<BookDTO> bookList;
             BookDAO dao = new BookDAO();
             bookList = dao.getListAvailableBook();
             request.setAttribute("LIST_AVAILABLE_BOOK", bookList);

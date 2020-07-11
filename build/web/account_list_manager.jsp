@@ -14,12 +14,10 @@
         <script src="main.js"></script>
     </head>
     <body>
-        <h1>Welcome:
-            <%
-                UserDTO authUser = (UserDTO) session.getAttribute("AUTH_USER");
-            %><%= authUser.getFullName()%></h1>
-        <a href="MainController?btnAction=Logout">Logout</a>
-        <%
+    <h1>Account Management</h1>
+    <div <%@include file="admin_hearder.jsp" %> </div>
+
+    <%
             List<UserDTO> userList = (List<UserDTO>) request.getAttribute("USER_LIST");
             if (userList != null && !userList.isEmpty()){
         %>

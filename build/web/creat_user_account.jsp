@@ -153,7 +153,6 @@
         %>
         <input type="text" placeholder="Address" name="address" value="<%if (request.getParameter("address") != null)%><%=request.getParameter("address")%><%;%>">
 
-        <input type="hidden" value="US" name="roleID">
         <hr>
 
 

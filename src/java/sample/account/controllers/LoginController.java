@@ -22,8 +22,8 @@ import sample.book.controllers.ViewLibraryController;
  * @author saost
  */
 public class LoginController extends HttpServlet {
-    private static final String ERROR = "test_false.html";
-    private static final String ADMIN = "test_success.html";
+    private static final String ERROR = "login.jsp";
+    private static final String ADMIN = "admin_home_page.jsp";
     private static final String USER = ViewLibraryController.class.getSimpleName();
     private static final String SUCCESS = "test_success.html";
     /**
@@ -52,6 +52,9 @@ public class LoginController extends HttpServlet {
                 }
                 HttpSession session = request.getSession();
                 session.setAttribute("AUTH_USER", user);
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("ERROR_MESSAGE", "Wrong username or password!");
             }
 
         } catch (Exception e) {

@@ -92,8 +92,8 @@ public class BookDAO {
                 stm.setString(2, book.getAuthor());
                 stm.setString(3, book.getPublisher());
                 stm.setInt(4, book.getTotal());
-                stm.setInt(5, book.getTotal());
-                stm.setDate(6, (Date) book.getPublishYear());
+                stm.setInt(5, book.getAvailable());
+                stm.setDate(6, new java.sql.Date(book.getPublishYear().getTime()));
                 stm.executeUpdate();
 
             }
@@ -116,16 +116,95 @@ public class BookDAO {
             conn = DBUtils.getConnection();
             if (conn != null){
                 String sql = "UPDATE [Book] " +
-                        "SET name=?, author=?, publisher=?, total=?, available=?, publishYear=? " +
+                        "SET name=?, author=?, publisher=?, publishYear=? " +
                         "WHERE id = ?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, book.getName());
                 stm.setString(2, book.getAuthor());
                 stm.setString(3, book.getPublisher());
-                stm.setInt(4, book.getTotal());
-                stm.setInt(5, book.getAvailable());
-                stm.setDate(6, (Date) book.getPublishYear());
-                stm.setInt(7, book.getId());
+                stm.setDate(4, new java.sql.Date(book.getPublishYear().getTime()));
+                stm.setInt(5, book.getId());
+
+                stm.executeUpdate();
+            }
+        } catch (Exception e){
+
+        } finally {
+            try {
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e){
+
+            }
+        }
+    }
+
+    public void deleteBook(int id) throws SQLException{
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = "UPDATE [Book] " +
+                        "SET status = 0 " +
+                        "WHERE id = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, id);
+                stm.executeUpdate();
+            }
+        } catch (Exception e){
+
+        } finally {
+            try {
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e){
+
+            }
+        }
+    }
+
+    public void exportBook(int id, int amount) throws SQLException{
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = "UPDATE [Book] " +
+                        "SET total=total - ?, available=available - ? " +
+                        "WHERE id = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, amount);
+                stm.setInt(2, amount);
+                stm.setInt(3, id);
+
+                stm.executeUpdate();
+            }
+        } catch (Exception e){
+
+        } finally {
+            try {
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e){
+
+            }
+        }
+    }
+
+    public void importBook(int id, int amount) throws SQLException{
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = "UPDATE [Book] " +
+                        "SET total=total + ?, available=available + ? " +
+                        "WHERE id = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, amount);
+                stm.setInt(2, amount);
+                stm.setInt(3, id);
 
                 stm.executeUpdate();
             }
@@ -282,4 +361,6 @@ public class BookDAO {
         }
         return bookList;
     }
+
+
 }

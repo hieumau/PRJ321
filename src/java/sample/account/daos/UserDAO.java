@@ -68,24 +68,53 @@ public class UserDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null){
-                String sql = "SELECT id, password, fullName, gender, phone, address, status FROM [User] " +
-                                "Where roleID=?";
+                String sql = "SELECT id, password, fullName, gender, phone, address FROM [User] " +
+                                "Where roleID=? AND status = 1";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, roleID);
                 rs = stm.executeQuery();
                 while (rs.next()){
-                    boolean status = rs.getBoolean("status");
-                    if (status){
-                        String id = rs.getString("id");
-                        String password = rs.getString("password");
-                        String fullName = rs.getString("fullName");
-                        String gender = rs.getString("gender");
-                        String phone = rs.getString("phone");
-                        String address = rs.getString("address");
+                    String id = rs.getString("id");
+                    String password = rs.getString("password");
+                    String fullName = rs.getString("fullName");
+                    String gender = rs.getString("gender");
+                    String phone = rs.getString("phone");
+                    String address = rs.getString("address");
 
-                        UserDTO user = new UserDTO(id, password, fullName, roleID, gender,phone, address);
-                        userList.add(user);
-                    }
+                    UserDTO user = new UserDTO(id, password, fullName, roleID, gender,phone, address);
+                    userList.add(user);
+                }
+            }
+        } catch (Exception e){
+
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            }catch (Exception e){
+
+            }
+        }
+        return userList;
+    }
+
+    public List<String> getListUserID(String roleID){
+        List<String> userList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = "SELECT id FROM [User] " +
+                        "Where roleID=? AND status = 1";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, roleID);
+                rs = stm.executeQuery();
+                while (rs.next()){
+                    String id = rs.getString("id");
+                    userList.add(id);
                 }
             }
         } catch (Exception e){
