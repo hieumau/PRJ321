@@ -5,19 +5,24 @@
  */
 package sample.account.controllers;
 
+import sample.account.daos.UserDAO;
+import sample.account.dtos.UserDTO;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author saost
  */
 public class ChangePasswordController extends HttpServlet {
-
+    private static String ERROR = ViewProfileController.class.getSimpleName();
+    private static String SUCCESS = ViewProfileController.class.getSimpleName();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,17 +35,35 @@ public class ChangePasswordController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ChangePasswordController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ChangePasswordController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = ERROR;
+        try {
+            HttpSession session = request.getSession();
+            UserDTO user = (UserDTO) session.getAttribute("AUTH_USER");
+
+            String oldPassword = request.getParameter("oldPassword");
+            String newPassword = request.getParameter("newPassword");
+            String rePassword = request.getParameter("rePassword");
+
+            boolean check = true;
+            if (!rePassword.equals(newPassword)){
+                check = false;
+                request.setAttribute("ERROR_MESSAGE", "Repassword not match!");
+            }
+
+            if (check){
+                UserDAO dao = new UserDAO();
+                if (dao.changePassword(user.getId(), oldPassword, newPassword)){
+                    request.setAttribute("SUCCESS_MESSAGE", "Change password successful!");
+                } else {
+                    request.setAttribute("ERROR_MESSAGE", "Wrong password!");
+                }
+            }
+            url = SUCCESS;
+
+        } catch (Exception e){
+            request.setAttribute("ERROR_MESSAGE", "Ops! Something wrong!");
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

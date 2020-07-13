@@ -16,6 +16,8 @@
     <button onclick="window.location.href='MainController?btnAction=Logout'">Logout</button>
     <button onclick="window.location.href='MainController?btnAction=View library'">Library</button>
     <button onclick="window.location.href='MainController?btnAction=View cart'">View Cart</button>
-    <button onclick="window.location.href='MainController?btnAction=View user not returned order'">Borrowing</button>
+    <button onclick="window.location.href='MainController?btnAction=View user not returned order'">Borrowed</button>
     <button onclick="window.location.href='MainController?btnAction=View user returned order'">History</button>
+    <button onclick="window.location.href='MainController?btnAction=View profile'">Edit profile</button>
+
 </html>

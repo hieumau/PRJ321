@@ -5,8 +5,7 @@
  */
 package sample.controllers;
 
-import sample.account.controllers.CreatAdminAccountController;
-import sample.account.controllers.CreatUserAccountController;
+import sample.account.controllers.*;
 import sample.book.controllers.*;
 import sample.cart.controllers.AddToCartController;
 import sample.cart.controllers.CheckOutController;
@@ -47,6 +46,10 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_BOOK = UpdateBookController.class.getSimpleName();
     private static final String CREAT_BOOK = CreatBookController.class.getSimpleName();
     private static final String DELETE_BOOK = DeleteBookController.class.getSimpleName();
+    private static final String VIEW_PROFILE = ViewProfileController.class.getSimpleName();
+    private static final String UPDATE_ADMIN_PROFILE = UpdateAdminProfileController.class.getSimpleName();
+    private static final String UPDATE_USER_PROFILE = UpdateUserProfileController.class.getSimpleName();
+    private static final String CHANGE_PASSWORD = ChangePasswordController.class.getSimpleName();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -99,14 +102,22 @@ public class MainController extends HttpServlet {
                 url = MANAGE_BOOK;
             } else if (action.equals("Export")) {
                 url = EXPORT_BOOK;
-            }else if (action.equals("Import")) {
+            } else if (action.equals("Import")) {
                 url = IMPORT_BOOK;
-            }else if (action.equals("Update book")) {
+            } else if (action.equals("Update book")) {
                 url = UPDATE_BOOK;
-            }else if (action.equals("Creat book")) {
+            } else if (action.equals("Creat book")) {
                 url = CREAT_BOOK;
-            }else if (action.equals("Delete book")) {
+            } else if (action.equals("Delete book")) {
                 url = DELETE_BOOK;
+            } else if (action.equals("View profile")) {
+                url = VIEW_PROFILE;
+            } else if (action.equals("Update admin profile")) {
+                url = UPDATE_ADMIN_PROFILE;
+            } else if (action.equals("Update user profile")) {
+                url = UPDATE_USER_PROFILE;
+            } else if (action.equals("Change password")) {
+                url = CHANGE_PASSWORD;
             }
 
         } catch (Exception e) {

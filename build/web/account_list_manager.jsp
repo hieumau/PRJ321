@@ -83,7 +83,6 @@
                     %>
                     </tbody>
                 </table>
-                <input type="submit" onclick="updateAllAccountinfo(<%=count - 1%>)">
 
         <%
             } else {

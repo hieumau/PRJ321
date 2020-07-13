@@ -7,22 +7,26 @@ package sample.account.controllers;
 
 import sample.account.daos.UserDAO;
 import sample.account.dtos.UserDTO;
-import sample.account.dtos.UserErrorDTO;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author saost
  */
-public class CreatUserAccountController extends HttpServlet {
-    private static final String ERROR = "creat_user_account.jsp";
-    private static final String SUCCESS = "login.jsp";
+public class ViewProfileController extends HttpServlet {
 
+    private static final String ADMIN_VIEW_PAGE = "admin_profile.jsp";
+    private static final String USER_VIEW_PAGE = "user_profile.jsp";
+
+    private static final String ERROR = "login.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,50 +40,26 @@ public class CreatUserAccountController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        UserErrorDTO userError = new UserErrorDTO();
-
         try {
-            String id = request.getParameter("id");
-            String password = request.getParameter("password");
-            String passwordRepeat = request.getParameter("passwordRepeat");
-            String fullName = request.getParameter("fullName");
-            String gender = request.getParameter("gender");
-            String phone = request.getParameter("phone");
-            String address = request.getParameter("address");
-            String roleID = "US";
-            boolean check = true;
+
             UserDAO dao = new UserDAO();
+            HttpSession session = request.getSession();
+            UserDTO currentUser = (UserDTO) session.getAttribute("AUTH_USER");
 
-            if (dao.isExitsUserID(id)){
-                userError.setUserIDError("Username is exits!");
-                check = false;
+            if (currentUser != null && currentUser.getRoleID().equals("AD")){
+                UserDTO user = dao.getUser(currentUser.getId());
+                session.setAttribute("AUTH_USER", user);
+                url = ADMIN_VIEW_PAGE;
+            } else if (currentUser != null && currentUser.getRoleID().equals("US")){
+                UserDTO user = dao.getUser(currentUser.getId());
+                session.setAttribute("AUTH_USER", user);
+                url = USER_VIEW_PAGE;
             }
-            if (password.length() < 4){
-                userError.setPasswordError("Password length at least 4 character!");
-                check = false;
-            }
-
-            if (!password.equals(passwordRepeat)){
-                userError.setPasswordRepeatError("Password not match!");
-                check = false;
-            }
-
-            if (check){
-                UserDTO user = new UserDTO(id, password,fullName, roleID, gender, phone, address);
-                dao.creatUser(user);
-                url = SUCCESS;
-            } else {
-                request.setAttribute("USER_ERROR", userError);
-            }
-
-
         } catch (Exception e){
-
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

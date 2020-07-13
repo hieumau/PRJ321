@@ -19,10 +19,6 @@
         <servlet-class>sample.account.controllers.LoginController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ChangePasswordController</servlet-name>
-        <servlet-class>sample.account.controllers.ChangePasswordController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CreatUserAccountController</servlet-name>
         <servlet-class>sample.account.controllers.CreatUserAccountController</servlet-class>
     </servlet>
@@ -114,6 +110,30 @@
         <servlet-name>DeleteBookController</servlet-name>
         <servlet-class>sample.book.controllers.DeleteBookController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateAdminProfileController</servlet-name>
+        <servlet-class>sample.account.controllers.UpdateAdminProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateUserProfileController</servlet-name>
+        <servlet-class>sample.account.controllers.UpdateUserProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewProfileController</servlet-name>
+        <servlet-class>sample.account.controllers.ViewProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <servlet-class>sample.account.controllers.ChangePasswordController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteBookFromCartController</servlet-name>
+        <servlet-class>sample.cart.controllers.DeleteBookFromCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateQuantityFromCartController</servlet-name>
+        <servlet-class>sample.cart.controllers.UpdateQuantityFromCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -121,10 +141,6 @@
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangePasswordController</servlet-name>
-        <url-pattern>/ChangePasswordController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreatUserAccountController</servlet-name>
@@ -217,6 +233,30 @@
     <servlet-mapping>
         <servlet-name>DeleteBookController</servlet-name>
         <url-pattern>/DeleteBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAdminProfileController</servlet-name>
+        <url-pattern>/UpdateAdminProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUserProfileController</servlet-name>
+        <url-pattern>/UpdateUserProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProfileController</servlet-name>
+        <url-pattern>/ViewProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <url-pattern>/ChangePasswordController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBookFromCartController</servlet-name>
+        <url-pattern>/DeleteBookFromCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateQuantityFromCartController</servlet-name>
+        <url-pattern>/UpdateQuantityFromCartController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

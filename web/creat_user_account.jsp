@@ -131,10 +131,11 @@
             <option value="female">Female</option>
             <option value="LGBT">LGBT</option>
         </select>
+        <%if (request.getParameter("gender") != null){%>
         <script>
-            <%if (request.getParameter("gender") != null)%>setSelectGenderInRegister('<%=request.getParameter("gender")%>')<%;%>
+            setSelectGenderInRegister('<%=request.getParameter("gender")%>')
         </script>
-
+        <%}%>
 <%--        phone--%>
         <label for="phone"><b>Phone Number</b></label>
         <%

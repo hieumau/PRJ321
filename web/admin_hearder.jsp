@@ -22,4 +22,6 @@
     <button onclick="window.location.href='MainController?btnAction=View admin not returned order'">View all orders</button>
     <button onclick="window.location.href='MainController?btnAction=View admin returned order'">History</button>
     <button onclick="window.location.href='MainController?btnAction=Manage book'">Manage book</button>
+    <button onclick="window.location.href='MainController?btnAction=View profile'">Edit profile</button>
+
 </html>

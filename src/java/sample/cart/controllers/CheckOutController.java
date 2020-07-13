@@ -52,6 +52,7 @@ public class CheckOutController extends HttpServlet {
                     int available = bookDAO.getAvailable(orderDetail.getBook().getId() + "");
                     if (orderQuantity > available){
                         isEnoughBook = false;
+                        request.setAttribute("ERROR_MESSAGE", "Not enough book: " + orderDetail.getBook().getName());
                         break;
                     }
                 }

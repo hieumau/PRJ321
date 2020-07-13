@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CreatAdminAccountController extends HttpServlet {
 
     private static final String ERROR = "creat_admin_account.jsp";
-    private static final String SUCCESS = "login.jsp";
+    private static final String SUCCESS = "creat_account_success.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -68,7 +68,10 @@ public class CreatAdminAccountController extends HttpServlet {
             if (check){
                 UserDTO user = new UserDTO(id, password,fullName, roleID, gender, phone, address);
                 dao.creatUser(user);
+                request.setAttribute("SUCCESS_MESSAGE", "Creat new account successful!");
                 url = SUCCESS;
+                response.sendRedirect(url);
+                return;
             } else {
                 request.setAttribute("USER_ERROR", userError);
             }

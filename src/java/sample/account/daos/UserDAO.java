@@ -60,6 +60,44 @@ public class UserDAO {
         return result;
     }
 
+    public UserDTO getUser(String userID) throws SQLException {
+        UserDTO result = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "SELECT fullName, roleID, gender, phone, address FROM [User] "
+                        + "WHERE id=?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    String fullName = rs.getString("fullName");
+                    String roleID = rs.getString("roleID");
+                    String gender = rs.getString("gender");
+                    String phone = rs.getString("phone");
+                    String address = rs.getString("address");
+                    result = new UserDTO(userID, "", fullName, roleID, gender, phone, address);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                rs.close();
+            }
+            if (conn != null) {
+                rs.close();
+            }
+        }
+        return result;
+    }
+
     public List<UserDTO> getListUser(String roleID){
         List<UserDTO> userList = new ArrayList<>();
         Connection conn = null;
@@ -160,6 +198,79 @@ public class UserDAO {
 
             }
         }
+    }
+
+    public void updateProfile(UserDTO user) throws SQLException{
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = "UPDATE [User] " +
+                        "SET fullName=?, gender =?, phone =?, address =? " +
+                        "WHERE id = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, user.getFullName());
+                stm.setString(2, user.getGender());
+                stm.setString(3, user.getPhone());
+                stm.setString(4, user.getAddress());
+                stm.setString(5, user.getId());
+
+                stm.executeUpdate();
+            }
+        } catch (Exception e){
+
+        } finally {
+            try {
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e){
+
+            }
+        }
+    }
+
+    public boolean changePassword(String userID, String oldPassword, String newPassword) throws SQLException{
+        boolean result = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        PreparedStatement updateStm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "SELECT '' FROM [User] "
+                        + "WHERE id=? AND password=?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                stm.setString(2, oldPassword);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    sql = "UPDATE [User] " +
+                            "SET password = ? " +
+                            "WHERE id=?";
+                    updateStm = conn.prepareStatement(sql);
+                    updateStm.setString(1, newPassword);
+                    updateStm.setString(2, userID);
+                    if (updateStm.executeUpdate() > 0){
+                        result = true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
     }
 
     public boolean isExitsUserID(String id) throws SQLException{

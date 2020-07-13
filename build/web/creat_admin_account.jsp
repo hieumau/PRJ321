@@ -29,6 +29,9 @@
             background-color: white;
         }
 
+        .success{
+            color: black;
+        }
         /* Full-width input fields */
         input[type=text], input[type=password], select, input[type=number] {
             width: 100%;
@@ -161,14 +164,17 @@
 
         <hr>
 
-
-        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-
-        <button type="submit" name="btnAction" value="Creat user account" class="registerbtn">Register</button>
+        <button type="submit" name="btnAction" value="Creat admin account" class="registerbtn">Register</button>
     </div>
 
-    <div class="container signin">
-        <p>Already have an account? <a href="login.jsp">Sign in</a>.</p>
+    <div class="success">
+        <%
+            String successMessage = (String) request.getAttribute("SUCCESS_MESSAGE");
+            if (successMessage != null){%>
+            <h2><b><%= successMessage%></b></h2>
+        <%
+            }
+        %>
     </div>
 </form>
 

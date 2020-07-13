@@ -71,7 +71,6 @@
                 <td>
                     <input type="submit" name="btnAction" value="Delete book from cart">
                     <input type="submit" name="btnAction" value="Update quantity book from cart">
-
                 </td>
             </tr>
         </form>
@@ -88,6 +87,6 @@
     <%
         }
     %>
-
+    <%@include file="message_footer.jsp"%>
     </body>
 </html>

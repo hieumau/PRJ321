@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sample.account.controllers;
-
-import sample.account.daos.UserDAO;
-import sample.account.dtos.UserDTO;
-import sample.account.dtos.UserErrorDTO;
+package sample.cart.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author saost
  */
-public class CreatUserAccountController extends HttpServlet {
-    private static final String ERROR = "creat_user_account.jsp";
-    private static final String SUCCESS = "login.jsp";
+public class DeleteBookFromCartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,48 +30,17 @@ public class CreatUserAccountController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        UserErrorDTO userError = new UserErrorDTO();
-
-        try {
-            String id = request.getParameter("id");
-            String password = request.getParameter("password");
-            String passwordRepeat = request.getParameter("passwordRepeat");
-            String fullName = request.getParameter("fullName");
-            String gender = request.getParameter("gender");
-            String phone = request.getParameter("phone");
-            String address = request.getParameter("address");
-            String roleID = "US";
-            boolean check = true;
-            UserDAO dao = new UserDAO();
-
-            if (dao.isExitsUserID(id)){
-                userError.setUserIDError("Username is exits!");
-                check = false;
-            }
-            if (password.length() < 4){
-                userError.setPasswordError("Password length at least 4 character!");
-                check = false;
-            }
-
-            if (!password.equals(passwordRepeat)){
-                userError.setPasswordRepeatError("Password not match!");
-                check = false;
-            }
-
-            if (check){
-                UserDTO user = new UserDTO(id, password,fullName, roleID, gender, phone, address);
-                dao.creatUser(user);
-                url = SUCCESS;
-            } else {
-                request.setAttribute("USER_ERROR", userError);
-            }
-
-
-        } catch (Exception e){
-
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet DeleteBookFromCartController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet DeleteBookFromCartController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

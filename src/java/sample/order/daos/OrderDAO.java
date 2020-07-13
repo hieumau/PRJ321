@@ -9,9 +9,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.SimpleTimeZone;
 
 public class OrderDAO {
     public List<OrderDTO> getNotReturnedOrderList(String userID) throws SQLException {
@@ -54,6 +56,89 @@ public class OrderDAO {
             }
         }
         return orderList;
+    }
+
+    public List<OrderDTO> getNotReturnedOrderList() throws SQLException {
+        OrderDTO order = null;
+        List<OrderDTO> orderList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = "SELECT id, userID, borrowDate, returnDate FROM [Order] " +
+                        "Where returned=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, 0);
+                rs = stm.executeQuery();
+
+                while (rs.next()){
+                    int id = rs.getInt("id");
+                    String userID = rs.getString("userID");
+                    Date borrowDate = rs.getDate("borrowDate");
+                    Date returnDate = rs.getDate("returnDate");
+
+                    OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+                    List<OrderDetailDTO> orderDetailList = orderDetailDAO.getOrderDetailList(id);
+                    order = new OrderDTO(id, userID, borrowDate, returnDate, false, orderDetailList);
+
+                    orderList.add(order);
+                }
+            }
+        } catch (Exception e){
+
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e){
+            }
+        }
+        return orderList;
+    }
+
+    public void autoReturnOverDate() throws SQLException {
+        OrderDTO order = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        PreparedStatement updateStm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = "SELECT '' FROM [Order] " +
+                        "Where returned=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, 0);
+                rs = stm.executeQuery();
+
+                Date today = new Date();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String todayStr = dateFormat.format(today);
+                while (rs.next()){
+                    sql = "UPDATE  [Order] " +
+                            "SET returned=1 " +
+                            "WHERE returnDate < ?";
+                    updateStm = conn.prepareStatement(sql);
+                    updateStm.setString(1, todayStr);
+                    updateStm.executeUpdate();
+                }
+            }
+        } catch (Exception e){
+
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stm != null) stm.close();
+                if (updateStm != null) updateStm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e){
+            }
+        }
     }
 
     public boolean returnOrder(int orderID) throws SQLException{

@@ -47,6 +47,7 @@ public class UpdateAccountInfoController extends HttpServlet {
             UserDAO dao = new UserDAO();
             dao.updateAccount(user);
             url = SUCCESS;
+            request.setAttribute("SUCCESS_MESSAGE", "Update successful!");
         } catch (Exception e){
 
         } finally {

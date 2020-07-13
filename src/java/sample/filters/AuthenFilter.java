@@ -5,10 +5,7 @@
  */
 package sample.filters;
 
-import sample.account.controllers.CreatAdminAccountController;
-import sample.account.controllers.CreatUserAccountController;
-import sample.account.controllers.LogoutController;
-import sample.account.controllers.UpdateAccountInfoController;
+import sample.account.controllers.*;
 import sample.account.dtos.UserDTO;
 import sample.book.controllers.*;
 import sample.cart.controllers.AddToCartController;
@@ -37,6 +34,7 @@ import javax.servlet.http.HttpSession;
  * @author saost
  */
 public class AuthenFilter implements Filter {
+
     private static List<String> userResource;
     private static List<String> adminResource;
     private static String LOGIN_PAGE = "login.jsp";
@@ -46,11 +44,11 @@ public class AuthenFilter implements Filter {
     // this value is null, this filter instance is not currently
     // configured. 
     private FilterConfig filterConfig = null;
-    
+
     public AuthenFilter() {
         userResource = new ArrayList<>();
         adminResource = new ArrayList<>();
-        
+
         userResource.add("");
         userResource.add("login.jsp");
         userResource.add("MainController");
@@ -71,6 +69,10 @@ public class AuthenFilter implements Filter {
         userResource.add(ReturnOrderController.class.getSimpleName());
         userResource.add("user_returned_order_list.jsp");
         userResource.add(ViewUserReturnedOrderController.class.getSimpleName());
+        userResource.add(UpdateUserProfileController.class.getSimpleName());
+        userResource.add(ViewProfileController.class.getSimpleName());
+        userResource.add("user_profile.jsp");
+        userResource.add(ChangePasswordController.class.getSimpleName());
 
         adminResource.add("");
         adminResource.add("login.jsp");
@@ -99,7 +101,11 @@ public class AuthenFilter implements Filter {
         adminResource.add(UpdateBookController.class.getSimpleName());
         adminResource.add(CreatBookController.class.getSimpleName());
         adminResource.add(DeleteBookController.class.getSimpleName());
-
+        adminResource.add("creat_account_success.jsp");
+        adminResource.add(UpdateAdminProfileController.class.getSimpleName());
+        adminResource.add(ViewProfileController.class.getSimpleName());
+        adminResource.add("admin_profile.jsp");
+        adminResource.add(ChangePasswordController.class.getSimpleName());
     }
 
     /**
@@ -119,7 +125,7 @@ public class AuthenFilter implements Filter {
             HttpServletRequest rq = (HttpServletRequest) request;
             HttpServletResponse rs = (HttpServletResponse) response;
             String uri = rq.getRequestURI();
-            log(uri);
+            log("ur = " + uri);
 
             if ((uri.contains(".js")
                     || uri.contains(".jpg")
@@ -144,15 +150,17 @@ public class AuthenFilter implements Filter {
             String resource = uri.substring(index + 1);
             HttpSession session = rq.getSession();
             if (session == null || session.getAttribute("AUTH_USER") == null) {
+                log("access denined");
                 rs.sendRedirect(LOGIN_PAGE);
             } else {
                 UserDTO dto = (UserDTO) session.getAttribute("AUTH_USER");
                 String role = dto.getRoleID();
                 if (role.equals("AD") && adminResource.contains(resource)) {
                     chain.doFilter(request, response);
-                } else if (role.equals("US") && userResource.contains(resource)){
+                } else if (role.equals("US") && userResource.contains(resource)) {
                     chain.doFilter(request, response);
                 } else {
+                    log("access denined");
                     rs.sendRedirect(LOGIN_PAGE);
                 }
             }
@@ -181,16 +189,16 @@ public class AuthenFilter implements Filter {
     /**
      * Destroy method for this filter
      */
-    public void destroy() {        
+    public void destroy() {
     }
 
     /**
      * Init method for this filter
      */
-    public void init(FilterConfig filterConfig) {        
+    public void init(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
-            if (debug) {                
+            if (debug) {
                 log("AuthenFilter:Initializing filter");
             }
         }
@@ -209,20 +217,20 @@ public class AuthenFilter implements Filter {
         sb.append(")");
         return (sb.toString());
     }
-    
+
     private void sendProcessingError(Throwable t, ServletResponse response) {
-        String stackTrace = getStackTrace(t);        
-        
+        String stackTrace = getStackTrace(t);
+
         if (stackTrace != null && !stackTrace.equals("")) {
             try {
                 response.setContentType("text/html");
                 PrintStream ps = new PrintStream(response.getOutputStream());
-                PrintWriter pw = new PrintWriter(ps);                
+                PrintWriter pw = new PrintWriter(ps);
                 pw.print("<html>\n<head>\n<title>Error</title>\n</head>\n<body>\n"); //NOI18N
 
                 // PENDING! Localize this for next official release
-                pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");                
-                pw.print(stackTrace);                
+                pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");
+                pw.print(stackTrace);
                 pw.print("</pre></body>\n</html>"); //NOI18N
                 pw.close();
                 ps.close();
@@ -239,7 +247,7 @@ public class AuthenFilter implements Filter {
             }
         }
     }
-    
+
     public static String getStackTrace(Throwable t) {
         String stackTrace = null;
         try {
@@ -253,9 +261,9 @@ public class AuthenFilter implements Filter {
         }
         return stackTrace;
     }
-    
+
     public void log(String msg) {
-        filterConfig.getServletContext().log(msg);        
+        filterConfig.getServletContext().log(msg);
     }
-    
+
 }

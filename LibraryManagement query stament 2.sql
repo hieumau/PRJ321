@@ -41,6 +41,11 @@ WHERE id = 8
 SELECT * FROM [Order]
                      
 
-						UPDATE [Order] " +
-                        "SET returned=1 AND returnDate=? " +
-                        "WHERE id = ?"
+			
+
+						SELECT id, password FROM [User]
+                        WHERE id='admin'
+
+						UPDATE [User]
+                        SET password = '2'
+                        WHERE id='admin13'

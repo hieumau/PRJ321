@@ -11,3 +11,8 @@ function setSelectGender(order, gender) {
     let x = document.getElementById("gender" + order);
     x.value = gender;
 }
+
+function setSelectGenderInRegister(gender) {
+    let x = document.getElementById("gender");
+    x.value = gender;
+}

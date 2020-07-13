@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import sample.book.daos.BookDAO;
 import sample.book.dtos.BookDTO;
+import sample.order.daos.OrderDAO;
 
 /**
  *
@@ -39,6 +40,9 @@ public class ViewLibraryController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            OrderDAO orderDAO = new OrderDAO();
+            orderDAO.autoReturnOverDate();
+
             List<BookDTO> bookList;
             BookDAO dao = new BookDAO();
             bookList = dao.getListAvailableBook();

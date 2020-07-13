@@ -7,9 +7,9 @@ package sample.account.controllers;
 
 import sample.account.daos.UserDAO;
 import sample.account.dtos.UserDTO;
-import sample.account.dtos.UserErrorDTO;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author saost
  */
-public class CreatUserAccountController extends HttpServlet {
-    private static final String ERROR = "creat_user_account.jsp";
-    private static final String SUCCESS = "login.jsp";
-
+public class UpdateUserProfileController extends HttpServlet {
+    private static String ERROR = ViewProfileController.class.getSimpleName();
+    private static String SUCCESS = ViewProfileController.class.getSimpleName();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,50 +35,25 @@ public class CreatUserAccountController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        UserErrorDTO userError = new UserErrorDTO();
-
         try {
             String id = request.getParameter("id");
-            String password = request.getParameter("password");
-            String passwordRepeat = request.getParameter("passwordRepeat");
             String fullName = request.getParameter("fullName");
             String gender = request.getParameter("gender");
             String phone = request.getParameter("phone");
             String address = request.getParameter("address");
-            String roleID = "US";
-            boolean check = true;
+            UserDTO user = new UserDTO(id, "",fullName, "", gender, phone, address);
+
             UserDAO dao = new UserDAO();
-
-            if (dao.isExitsUserID(id)){
-                userError.setUserIDError("Username is exits!");
-                check = false;
-            }
-            if (password.length() < 4){
-                userError.setPasswordError("Password length at least 4 character!");
-                check = false;
-            }
-
-            if (!password.equals(passwordRepeat)){
-                userError.setPasswordRepeatError("Password not match!");
-                check = false;
-            }
-
-            if (check){
-                UserDTO user = new UserDTO(id, password,fullName, roleID, gender, phone, address);
-                dao.creatUser(user);
-                url = SUCCESS;
-            } else {
-                request.setAttribute("USER_ERROR", userError);
-            }
-
+            dao.updateProfile(user);
+            url = SUCCESS;
+            request.setAttribute("SUCCESS_MESSAGE", "Update successful!");
 
         } catch (Exception e){
-
+            request.setAttribute("ERROR_MESSAGE", "Ops! Something wrong!");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
