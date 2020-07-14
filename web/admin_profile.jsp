@@ -29,6 +29,7 @@
                 <th>Gender</th>
                 <th>Phone</th>
                 <th>Address</th>
+
             </tr>
             </thead>
             <tbody>
@@ -40,11 +41,11 @@
                     </td>
                     <input type="hidden" name="id" value=<%= authUser.getId()%>>
                     <td>
-                        <input type="text" name="fullName" value='<%= authUser.getFullName()%>'>
+                        <input type="text" name="fullName" value='<%= authUser.getFullName()%>' required>
                     </td>
 
                     <td>
-                        <select name="gender" id="gender">
+                        <select name="gender" id="gender" required>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                             <option value="LGBT">LGBT</option>

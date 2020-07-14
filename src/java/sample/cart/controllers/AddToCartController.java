@@ -54,7 +54,14 @@ public class AddToCartController extends HttpServlet {
             String id = request.getParameter("id");
             BookDTO book = dao.getBook(id);
 
-            if (dao.isAvailable(id)){
+            boolean isEnoughBook = true;
+            int available = dao.getAvailable(id);
+            if (cart.getQuantity(id) >= available){
+                isEnoughBook = false;
+                request.setAttribute("ERROR_MESSAGE", "Not enough book: " + cart.getCart().get(Integer.parseInt(id)).getBook().getName());
+            }
+
+            if (dao.isAvailable(id) && isEnoughBook){
                 url = SUCCESS;
                 cart.add(book);
                 request.setAttribute("SUCCESS_MESSAGE", "Add: " + book.getName() + " successful");
@@ -64,7 +71,7 @@ public class AddToCartController extends HttpServlet {
 
 
         } catch (Exception e){
-
+            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

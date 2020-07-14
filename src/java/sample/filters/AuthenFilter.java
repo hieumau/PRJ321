@@ -8,9 +8,7 @@ package sample.filters;
 import sample.account.controllers.*;
 import sample.account.dtos.UserDTO;
 import sample.book.controllers.*;
-import sample.cart.controllers.AddToCartController;
-import sample.cart.controllers.CheckOutController;
-import sample.cart.controllers.ViewCartController;
+import sample.cart.controllers.*;
 import sample.order.controllers.*;
 
 import java.io.IOException;
@@ -73,6 +71,9 @@ public class AuthenFilter implements Filter {
         userResource.add(ViewProfileController.class.getSimpleName());
         userResource.add("user_profile.jsp");
         userResource.add(ChangePasswordController.class.getSimpleName());
+        userResource.add(DeleteBookFromCartController.class.getSimpleName());
+        userResource.add(UpdateBookFromCartController.class.getSimpleName());
+        userResource.add(SearchBookController.class.getSimpleName());
 
         adminResource.add("");
         adminResource.add("login.jsp");
@@ -106,6 +107,10 @@ public class AuthenFilter implements Filter {
         adminResource.add(ViewProfileController.class.getSimpleName());
         adminResource.add("admin_profile.jsp");
         adminResource.add(ChangePasswordController.class.getSimpleName());
+        adminResource.add(DeleteAccountController.class.getSimpleName());
+        adminResource.add(SearchBookController.class.getSimpleName());
+
+
     }
 
     /**

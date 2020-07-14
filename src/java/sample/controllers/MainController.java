@@ -7,9 +7,7 @@ package sample.controllers;
 
 import sample.account.controllers.*;
 import sample.book.controllers.*;
-import sample.cart.controllers.AddToCartController;
-import sample.cart.controllers.CheckOutController;
-import sample.cart.controllers.ViewCartController;
+import sample.cart.controllers.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +48,10 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_ADMIN_PROFILE = UpdateAdminProfileController.class.getSimpleName();
     private static final String UPDATE_USER_PROFILE = UpdateUserProfileController.class.getSimpleName();
     private static final String CHANGE_PASSWORD = ChangePasswordController.class.getSimpleName();
+    private static final String DELETE_BOOK_FROM_CART = DeleteBookFromCartController.class.getSimpleName();
+    private static final String UPDATE_BOOK_FROM_CART = UpdateBookFromCartController.class.getSimpleName();
+    private static final String SEARCH_BOOK = SearchBookController.class.getSimpleName();
+    private static final String DELETE_ACCOUNT = DeleteAccountController.class.getSimpleName();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -118,6 +120,14 @@ public class MainController extends HttpServlet {
                 url = UPDATE_USER_PROFILE;
             } else if (action.equals("Change password")) {
                 url = CHANGE_PASSWORD;
+            } else if (action.equals("Delete book from cart")) {
+                url = DELETE_BOOK_FROM_CART;
+            } else if (action.equals("Update book from cart")) {
+                url = UPDATE_BOOK_FROM_CART;
+            } else if (action.equals("Search book")) {
+                url = SEARCH_BOOK;
+            } else if (action.equals("Delete account")) {
+                url = DELETE_ACCOUNT;
             }
 
         } catch (Exception e) {

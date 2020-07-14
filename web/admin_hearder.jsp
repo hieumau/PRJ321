@@ -16,7 +16,6 @@
         %>
         <%= " " + authUser.getFullName()%></h2>
     <button onclick="window.location.href='MainController?btnAction=Logout'">Logout</button>
-    <button onclick="window.location.href='MainController?btnAction=Creat user account'">Creat User Account</button>
     <button onclick="window.location.href='MainController?btnAction=Creat admin account'">Creat Admin Account</button>
     <button onclick="window.location.href='MainController?btnAction=ManageAccount'">Manage User Account</button>
     <button onclick="window.location.href='MainController?btnAction=View admin not returned order'">View all orders</button>

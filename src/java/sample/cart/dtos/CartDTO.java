@@ -35,6 +35,20 @@ public class CartDTO {
         this.cart = cart;
     }
 
+    public int getQuantity(String bookID){
+        int result = 0;
+        try {
+            if (this.cart.containsKey(Integer.parseInt(bookID))){
+                result = cart.get(Integer.parseInt(bookID)).getQuantity();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+
     public void add(BookDTO book){
         if (this.cart == null){
             this.cart = new HashMap<Integer, OrderDetailDTO>();
@@ -48,21 +62,30 @@ public class CartDTO {
         }
     }
 
-    public void delete(String bookID) {
+    public boolean delete(String bookID) {
         if (cart == null){
-            return;
+            return false;
         }
         if (this.cart.containsKey(Integer.parseInt(bookID))){
             cart.remove(Integer.parseInt(bookID));
+            return true;
         }
+        return false;
     }
 
-    public void update(String bookID, OrderDetailDTO orderDetail){
-        if (this.cart != null){
-            if (this.cart.containsKey(Integer.parseInt(bookID))){
-                this.cart.replace(Integer.parseInt(bookID), orderDetail);
+    public boolean update(String bookID, int quantity, String note){
+        try {
+            if (this.cart != null){
+                if (this.cart.containsKey(Integer.parseInt(bookID))){
+                    this.cart.get(Integer.parseInt(bookID)).setQuantity(quantity);
+                    this.cart.get(Integer.parseInt(bookID)).setNote(note);
+                    return true;
+                }
             }
+        } catch (Exception e){
+            e.printStackTrace();
         }
+        return false;
     }
 
 }

@@ -49,3 +49,12 @@ SELECT * FROM [Order]
 						UPDATE [User]
                         SET password = '2'
                         WHERE id='admin13'
+
+SELECT * FROM [Order]
+
+
+SELECT * FROM [Order]
+WHERE returnDate > '2020-7-11'
+
+
+ALTER TABLE [Book] ADD DEFAULT 1 FOR [status]

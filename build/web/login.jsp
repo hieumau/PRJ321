@@ -24,8 +24,8 @@
         }
     %>
 
-    Username<input type="text" name="userID"/></br>
-    Password<input type="password" name="password"/></br>
+    Username<input type="text" name="userID" required/></br>
+    Password<input type="password" name="password" required/></br>
     <input type="submit" value="Login" name="btnAction"/>
     <input type="reset" value="Reset"/>
 </form>

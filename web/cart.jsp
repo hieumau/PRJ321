@@ -34,6 +34,7 @@
             <th>Available</th>
             <th>Publish Year</th>
             <th>Quantity</th>
+            <th>Note</th>
         </tr>
         </thead>
         <tbody>
@@ -66,11 +67,14 @@
                     <%= dto.getBook().getPublishYear()%>
                 </td>
                 <td>
-                    <%= dto.getQuantity()%>
+                    <input type="number" value="<%= dto.getQuantity()%>" min="1" max="<%= dto.getBook().getAvailable()%>" name="quantity" required>
+                </td>
+                <td>
+                    <input type="text" value="<%= dto.getNote()%>" name="note">
                 </td>
                 <td>
                     <input type="submit" name="btnAction" value="Delete book from cart">
-                    <input type="submit" name="btnAction" value="Update quantity book from cart">
+                    <input type="submit" name="btnAction" value="Update book from cart">
                 </td>
             </tr>
         </form>

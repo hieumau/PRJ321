@@ -131,8 +131,12 @@
         <servlet-class>sample.cart.controllers.DeleteBookFromCartController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UpdateQuantityFromCartController</servlet-name>
-        <servlet-class>sample.cart.controllers.UpdateQuantityFromCartController</servlet-class>
+        <servlet-name>UpdateBookFromCartController</servlet-name>
+        <servlet-class>sample.cart.controllers.UpdateBookFromCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchBookController</servlet-name>
+        <servlet-class>sample.book.controllers.SearchBookController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -255,8 +259,12 @@
         <url-pattern>/DeleteBookFromCartController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UpdateQuantityFromCartController</servlet-name>
-        <url-pattern>/UpdateQuantityFromCartController</url-pattern>
+        <servlet-name>UpdateBookFromCartController</servlet-name>
+        <url-pattern>/UpdateBookFromCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchBookController</servlet-name>
+        <url-pattern>/SearchBookController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

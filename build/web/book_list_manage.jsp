@@ -19,6 +19,16 @@
         <%@include file="admin_hearder.jsp"%>
 
         <%
+            String searchText = request.getParameter("searchText");
+            if (searchText == null) searchText = "";
+        %>
+        <br>
+        <form action="MainController">
+            <input type="text" name="searchText" value="<%= searchText%>" placeholder="search book by name">
+            <input type="submit" value="Search book" name="btnAction">
+        </form><br>
+
+        <%
             List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("LIST_AVAILABLE_BOOK");
             if (bookList != null && !bookList.isEmpty()){
         %>

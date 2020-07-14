@@ -8,6 +8,7 @@
 <%@page import="sample.account.dtos.UserDTO"%>
 <%@ page import="sample.book.dtos.BookDTO" %>
 <%@ page import="java.awt.print.Book" %>
+<%@ page import="sample.cart.dtos.CartDTO" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,7 +21,17 @@
     <%@include file="user_header.jsp"%>
 
     <%
+        String searchText = request.getParameter("searchText");
+        if (searchText == null) searchText = "";
+    %>
+    <br>
+    <form action="MainController">
+        <input type="text" name="searchText" value="<%= searchText%>" placeholder="search book by name">
+        <input type="submit" value="Search book" name="btnAction">
+    </form><br>
+    <%
         List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("LIST_AVAILABLE_BOOK");
+        CartDTO cart = (CartDTO) session.getAttribute("CART");
         if (bookList != null && !bookList.isEmpty()){
     %>
     <table border="1">
@@ -31,8 +42,12 @@
             <th>Book Name</th>
             <th>Author</th>
             <th>Publisher</th>
+            <th>Total</th>
             <th>Available</th>
             <th>Publish Year</th>
+            <th>Add to cart</th>
+            <th>Your cart</th>
+
         </tr>
         </thead>
         <tbody>
@@ -59,6 +74,9 @@
                     <%= dto.getPublisher()%>
                 </td>
                 <td>
+                    <%= dto.getTotal()%>
+                </td>
+                <td>
                     <%= dto.getAvailable()%>
                 </td>
                 <td>
@@ -66,6 +84,18 @@
                 </td>
                 <td>
                     <input type="submit" name="btnAction" value="Add to cart">
+                </td>
+                <td>
+                    <%
+                        if (cart == null) {%>
+                            <%= 0%>
+                    <%
+                        } else {
+                    %>
+                            <%= cart.getQuantity(dto.getId() + "")%>
+                    <%
+                        }
+                    %>
                 </td>
             </tr>
         </form>

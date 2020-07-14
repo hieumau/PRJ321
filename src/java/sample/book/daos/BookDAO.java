@@ -322,6 +322,47 @@ public class BookDAO {
         return bookList;
     }
 
+    public List<BookDTO> searchBook(String searchText){
+        List<BookDTO> bookList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = "SELECT id, name, author, publisher, total, available, publishYear FROM [Book] " +
+                        "Where available > 0 AND status = 1 AND name like ? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, "%" + searchText + "%");
+                rs = stm.executeQuery();
+
+                while (rs.next()){
+                    int id = rs.getInt("id");
+                    String name = rs.getString("name");
+                    String author = rs.getString("author");
+                    String publisher = rs.getString("publisher");
+                    int total = rs.getInt("total");
+                    int available = rs.getInt("available");
+                    java.util.Date publishYear = rs.getDate("publishYear");
+
+                    BookDTO book = new BookDTO(id, name, author, publisher, total, available, publishYear);
+                    bookList.add(book);
+                }
+            }
+        } catch (Exception e){
+
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            }catch (Exception e){
+
+            }
+        }
+        return bookList;
+    }
+
     public List<BookDTO> getListBook(){
         List<BookDTO> bookList = new ArrayList<>();
         Connection conn = null;

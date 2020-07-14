@@ -3,57 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/account/controllers/UpdateUserProfileController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/utils/DBUtils.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/account/dtos/UserErrorDTO.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/account/controllers/LogoutController.java</file>
+            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/book/controllers/SearchBookController.java</file>
+            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/book/controllers/UpdateBookController.java</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/controllers/MainController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/account/controllers/UpdateAccountInfoController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/book_list_manage.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/admin_home_page.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/order/daos/OrderDetailDAO.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/check_out.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/admin_profile.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/account_list_manager.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/creat_admin_account.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/account/controllers/ChangePasswordController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/cart/daos/CartDAO.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/out_of_book.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/book/controllers/ViewLibraryController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/library.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/message_footer.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/test_success.html</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/cart.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/account/dtos/UserDTO.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/creat_user_account.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/creat_account_success.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/user_profile.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/test_false.html</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/cart/controllers/UpdateQuantityFromCartController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/conf/MANIFEST.MF</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/order/dtos/OrderDTO.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/cart/controllers/CheckOutController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/account/controllers/LoginController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/account/controllers/ViewProfileController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/account/daos/UserDAO.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/order/daos/OrderDAO.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/order/controllers/ReturnOrderController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/user_not_returned_order_list.jsp</file>
             <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/filters/AuthenFilter.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/main.js</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/cart/dtos/CartDTO.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/user_returned_order_list.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/order/controllers/ViewUserReturnedOrderController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/cart/controllers/DeleteBookFromCartController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/login.jsp</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/META-INF/context.xml</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/book/daos/BookDAO.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/cart/controllers/ViewCartController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/order/controllers/ViewUserNotReturnedOrderController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/cart/controllers/AddToCartController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/src/java/sample/account/controllers/UpdateAdminProfileController.java</file>
-            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/admin_returned_order_list.jsp</file>
+            <file>file:/C:/Users/saost/Desktop/PRJ321/LibraryManagement/web/admin_home_page.jsp</file>
         </group>
     </open-files>
 </project-private>

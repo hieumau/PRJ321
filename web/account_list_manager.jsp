@@ -50,10 +50,10 @@
                                     <input type="hidden" name="roleID" value=<%= dto.getRoleID()%>>
 
                                     <td>
-                                        <input type="text" name="fullName" value='<%= dto.getFullName()%>'>
+                                        <input type="text" name="fullName" value='<%= dto.getFullName()%>' required>
                                     </td>
                                     <td>
-                                        <input type="password" name="password" id="password<%=count - 1%>" value='<%= dto.getPassword()%>'>
+                                        <input type="password" name="password" id="password<%=count - 1%>" value='<%= dto.getPassword()%>' required>
                                         <input type="checkbox" onclick="hideShowPassword(<%=count - 1%>)">Show Password
                                     </td>
                                     <td>
@@ -75,6 +75,9 @@
                                     </td>
                                     <td>
                                         <input type="submit" name="btnAction" value="Update account info">
+                                    </td>
+                                    <td>
+                                        <input type="submit" name="btnAction" value="Delete account">
                                     </td>
                                 </tr>
                             </form>
